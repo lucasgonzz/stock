@@ -11,7 +11,7 @@ class MainController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     public function venta(){
     	return view('main.venta');
@@ -23,10 +23,10 @@ class MainController extends Controller
     }
     public function lista_de_precios(){
         $agent = new Agent();
-    	return view('main.lista_precios', compact('agent'));
+    	return view('main.lista-precios', compact('agent'));
     }
     public function resumen_ventas(){
-        return view('main.resumen-ventas-hoy');
+        return view('main.resumen-ventas');
     }
     // public function resumenVentasDesdeUnaFecha(){
     //     return view('main.resumen-ventas-desde-una-fecha');
