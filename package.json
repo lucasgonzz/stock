@@ -23,5 +23,9 @@
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "buefy": "^0.8.2",
+        "toastr": "^2.1.4"
     }
 }

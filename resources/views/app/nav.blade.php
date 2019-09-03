@@ -17,7 +17,13 @@
 				<a class="nav-link {{ active('resumen-ventas') }}" href="{{ route('resumen-ventas') }}"><i class="fas fa-key m-r-5 fa-xs"></i>Resumen de ventas</a>
 			</li>
 			<li class="nav-item active">
-				<a class="nav-link {{ active('resumen-ventas') }}" href="{{ route('resumen-ventas') }}"><i class="fas fa-sign-out-alt m-r-5"></i>Salir</a>
+				<a class="nav-link {{ active('codigos-de-barras') }}" href="{{ route('codigos-de-barras') }}"><i class="fas fa-key m-r-5 fa-xs"></i>Codigos de barras</a>
+			</li>
+			<li class="nav-item active">
+				<form method="POST" action="{{ route('logout') }}">
+					{{ csrf_field() }}
+					<button class="nav-link btn-logout" type="submit"><i class="fas fa-sign-out-alt m-r-5"></i>Salir</button>
+				</form>
 			</li>
 		</ul>
 	</div>

@@ -7,8 +7,8 @@
 	<!-- app.css -->
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	
-	<!-- app.css -->
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<!-- toastr.css -->
+	<link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
 </head>
 <body>
 	@include('app.nav')

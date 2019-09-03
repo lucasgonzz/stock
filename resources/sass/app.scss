@@ -1,19 +1,29 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+
 // Variables
 @import 'variables';
 @import 'helpers';
 @import 'nav';
+@import 'venta';
+@import 'lista-precios';
+@import 'resumen-ventas';
+@import 'overrides';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
 
 // @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 // @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 // @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 // @import '~@fortawesome/fontawesome-free/scss/regular.scss';
-$fa-font-path:         "../webfonts";
+$fa-font-path: "../webfonts";
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
 @import "./fontawesome/scss/brands.scss";
