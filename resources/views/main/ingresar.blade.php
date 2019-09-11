@@ -8,7 +8,7 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="barCode">Codigo de Barras</label>
-						<input type="text" id="barCode" name="barCode" class="form-control focus-red" v-model="barCode" autofocus="true">
+						<input type="text" id="barCode" name="barCode" class="form-control focus-red" v-model="barCode" autofocus="true" @keyup.enter="isRegister">
 					</div>
 					<div class="row m-b-5">
 						<div class="col">
@@ -48,6 +48,7 @@
 			</div>
 		</div>
 		@include('modals.addProvider')
+		@include('modals.editArticle')
     </div>
 </div>
 @endsection
@@ -60,6 +61,7 @@ new Vue({
 	el: '#ingresar',
 	created: function() {
 		this.getProviders();
+		this.getBarCodes();
 	},
 	data: {
 		// Lista de proovedores
@@ -67,6 +69,10 @@ new Vue({
 
 		// Nombre de proovedor para añadir
 		provider: '',
+
+		// En caso de que ya este registrado
+		article: {'id': '', 'act_fecha': true, 'name': '', 'cost': '', 'price': '', 'previus_price': '', 'stock': '', 'providers': [], 'bar_code': ''},
+
 
 		// Formulario para añadir
 		barCode: '',
@@ -76,8 +82,57 @@ new Vue({
 		created_at:  new Date().toISOString().slice(0,10),
 		providers_selected: [],
 		stock: '',
+
+		codigos_barras_disponibles: [],
 	},
 	methods: {
+		getBarCodes: function() {
+			axios.get('bar-codes')
+			.then( response => {
+				// console.log(response.data);
+				this.codigos_barras_disponibles = response.data;
+			})
+			.catch( error => {
+				// console.log(error.response);
+				location.reload();
+			});
+		},
+		isRegister: function(){
+			if(this.codigos_barras_disponibles.includes(this.barCode)){
+				console.log('Entro');
+				axios.get('articles/' + this.barCode)
+				.then( response => {
+					let article = response.data;
+					this.article.id = article.id;
+					this.article.creado = article.creado + ' hace ' + article.created_diff;
+					this.article.actualizado = article.actualizado + ' hace ' + article.updated_diff;
+					this.article.codigo_barras = article.codigo_barras;
+					this.article.name = article.name;
+					this.article.cost = article.cost;
+					this.article.price = article.price;
+					this.article.stock = article.stock;
+					this.article.mayorista = article.mayorista;
+					$("#editArticle").modal('show');
+					// $("#costo").focus();
+				})
+				.catch( error => {
+					console.log(error.response);
+				});	
+			}
+		},
+		updateArticle: function(){
+			axios.put('articles/'+this.article.id, this.article)
+			.then( response => {
+				$('#editArticle').modal('hide');
+				toastr.success(this.article.name + ' se actualizo con exito');
+				this.article = {'id': '', 'act_fecha': true, 'name': '', 'cost': '', 'price': '', 'stock': '', 'providers': [], 'bar_code': ''};
+				this.barCode = '';
+				$('#barCode').focus();
+			})
+			.catch( error => {
+				console.log(error.response);
+			});
+		},
 		saveArticle: function() {
 			axios.post('articles', {
 				bar_code: this.barCode,
@@ -105,7 +160,7 @@ new Vue({
 		getProviders: function() {
 			axios.get('providers')
 			.then( response => {
-				console.log(response.data);
+				// console.log(response.data);
 				this.providers = response.data;
 			})
 			.catch( error => {

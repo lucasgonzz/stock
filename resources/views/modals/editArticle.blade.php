@@ -9,6 +9,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
+					<!-- as@{{article.creado}} -->
 					<label for="cost">Agregado</label>
 					<input type="text" name="cost" v-model="article.creado" class="form-control" disabled>
 				</div>

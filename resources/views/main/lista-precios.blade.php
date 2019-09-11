@@ -236,8 +236,8 @@ new Vue({
 			.then( response => {
 				this.getArticles();
 				$('#editArticle').modal('hide');
-				this.articulo = {'id': '', 'act_fecha': true, 'name': '', 'cost': '', 'price': '', 'stock': '', 'providers': [], 'bar_code': ''};
-				toastr.success(articulo.name + ' se actualizo con exito');
+				this.article = {'id': '', 'act_fecha': true, 'name': '', 'cost': '', 'price': '', 'stock': '', 'providers': [], 'bar_code': ''};
+				toastr.success(this.article.name + ' se actualizo con exito');
 				// this.article = {};
 			})
 			.catch( error => {

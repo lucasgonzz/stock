@@ -32,6 +32,7 @@
 	el: "#resumen-ventas",
 	created: function(){
 		this.getSales();
+		this.invertir();
 	},
 	data: {
 		sales: [],
@@ -40,6 +41,7 @@
 		lastSales: [],
 		mostrar: 0,
 		ventas_cont: 0,
+		now:  '',
 
 		// Desde una fecha
 		desde: '',
@@ -61,6 +63,16 @@
 			.catch( error => {
 				console.log(error.response);
 			})
+		},
+		invertir: function(cadena) {
+			var x = cadena.length;
+			var cadenaInvertida = "";
+
+			while (x>=0) {
+				cadenaInvertida = cadenaInvertida + cadena.charAt(x);
+				x--;
+			}
+			this.now = cadenaInvertida;
 		},
 		deleteArticle: function(sale_id, sale_articles, article) {
 			var articles_ids = [];

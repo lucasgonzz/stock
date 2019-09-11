@@ -253,9 +253,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($codigo_barras)
+    public function show($bar_code)
     {   
-        $article = Article::where('codigo_barras', $codigo_barras)->first();
+        $article = Article::where('bar_code', $bar_code)->first();
         $article = DateFormat::formatObject($article, 'd/m/Y');
         return $article;
     }
