@@ -279,7 +279,7 @@ class ArticleController extends Controller
             $article->previus_price = $article->price;
         }
         $article->name = $request->name;
-        $article->cost = $price;
+        $article->cost = str_replace('.', '', $request->cost);
         $article->price = str_replace('.', '', $request->price);
         $article->stock = $request->stock;
         if(!$request->act_fecha){
