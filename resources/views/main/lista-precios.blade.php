@@ -11,7 +11,7 @@
 	<div class="row justify-content-center m-t-10 p-r">
 		<div class="col col-lg-10">
 		@if($agent->isMobile())
-			@include('main.includes.articleComponent')
+			@include('includes.articleComponent')
 		@else
 			<table id="table-articles" class="table table-striped table-hover table-sm m-t-20">
 				<thead class="thead-dark">
